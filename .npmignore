@@ -1,0 +1,9 @@
+node_modules/
+.git/
+.github/
+*.tgz
+.env
+.env.local
+tsconfig.json
+.gitignore
+.npmignore

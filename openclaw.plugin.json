@@ -1,0 +1,59 @@
+{
+  "id": "venice-web-search",
+  "activation": {
+    "onStartup": false
+  },
+  "providerAuthEnvVars": {
+    "venice-search": ["VENICE_API_KEY"]
+  },
+  "setup": {
+    "providers": [
+      {
+        "id": "venice-search",
+        "authMethods": ["api-key"],
+        "envVars": ["VENICE_API_KEY"]
+      }
+    ]
+  },
+  "uiHints": {
+    "webSearch.apiKey": {
+      "label": "Venice API Key",
+      "help": "Venice AI API key (fallback: VENICE_API_KEY env var). Create one at https://venice.ai/settings/api.",
+      "sensitive": true,
+      "placeholder": "vn_..."
+    },
+    "webSearch.searchProvider": {
+      "label": "Default Search Backend",
+      "help": "Which underlying search backend Venice should use: 'brave' (Brave Search with Zero Data Retention, default) or 'google' (Google Search via Venice's anonymizing proxy)."
+    },
+    "webSearch.baseUrl": {
+      "label": "Venice API Base URL",
+      "help": "Optional Venice-compatible API base URL for trusted proxies. Defaults to https://api.venice.ai/api/v1."
+    }
+  },
+  "contracts": {
+    "webSearchProviders": ["venice-search"]
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "webSearch": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "apiKey": {
+            "type": ["string", "object"]
+          },
+          "searchProvider": {
+            "type": "string",
+            "enum": ["brave", "google"]
+          },
+          "baseUrl": {
+            "type": ["string", "object"]
+          }
+        }
+      }
+    }
+  }
+}

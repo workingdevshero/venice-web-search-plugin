@@ -19,15 +19,24 @@ or Google Search via Venice's privacy-preserving infrastructure.
 
 ## Requirements
 
-- `openclaw >= 2026.5.2`
+- `openclaw >= 2026.5.4`
 - A Venice API key — create one at <https://venice.ai/settings/api>
 
 ## Install
 
-From npm (after publish):
+From ClawHub (recommended):
+
+```bash
+openclaw plugins install clawhub:@workingdevshero/venice-web-search-plugin
+openclaw plugins enable venice-web-search
+openclaw gateway restart
+```
+
+From npm:
 
 ```bash
 openclaw plugins install npm:@workingdevshero/venice-web-search-plugin
+openclaw plugins enable venice-web-search
 openclaw gateway restart
 ```
 
@@ -39,6 +48,7 @@ cd venice-web-search-plugin
 npm install
 npm run build
 openclaw plugins install ./
+openclaw plugins enable venice-web-search
 openclaw gateway restart
 ```
 
@@ -50,13 +60,9 @@ openclaw plugins inspect venice-web-search --runtime --json
 
 ## Configure
 
-Set the API key (any one of these is enough):
+Set the API key:
 
 ```bash
-# Env var
-export VENICE_API_KEY="vn_your_key_here"
-
-# Or via OpenClaw config
 openclaw config set plugins.entries.venice-web-search.config.webSearch.apiKey "vn_your_key_here"
 ```
 

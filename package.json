@@ -1,6 +1,6 @@
 {
   "name": "@workingdevshero/venice-web-search-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "OpenClaw plugin: Venice AI web search provider (Brave ZDR / Google) for the OpenClaw web_search tool.",
   "type": "module",
   "main": "./dist/index.js",

@@ -3,6 +3,10 @@ import type {
   WebSearchProviderPlugin,
   WebSearchProviderToolDefinition,
 } from "openclaw/plugin-sdk/provider-web-search";
+import {
+  mergeScopedSearchConfig,
+  resolveProviderWebSearchPluginConfig,
+} from "openclaw/plugin-sdk/provider-web-search";
 import { createWebSearchProviderContractFields } from "openclaw/plugin-sdk/provider-web-search-contract";
 
 export const VENICE_PROVIDER_ID = "venice-search";
@@ -75,6 +79,13 @@ export function createVeniceWebSearchProvider(): WebSearchProviderPlugin {
       configuredCredential: { pluginId: VENICE_PLUGIN_ID },
       selectionPluginId: VENICE_PLUGIN_ID,
     }),
-    createTool: (ctx) => createVeniceToolDefinition(ctx.searchConfig),
+    createTool: (ctx) => createVeniceToolDefinition(
+      mergeScopedSearchConfig(
+        ctx.searchConfig,
+        VENICE_PROVIDER_ID,
+        resolveProviderWebSearchPluginConfig(ctx.config, VENICE_PLUGIN_ID),
+        { mirrorApiKeyToTopLevel: true },
+      ),
+    ),
   };
 }

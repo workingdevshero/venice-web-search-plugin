@@ -80,24 +80,10 @@ function resolveVeniceBaseUrl(searchConfig: Record<string, unknown> | undefined)
 }
 
 function resolveVeniceApiKey(searchConfig: Record<string, unknown> | undefined): string | undefined {
-  const topLevel = readConfiguredSecretString(
+  return readConfiguredSecretString(
     searchConfig?.apiKey,
     "tools.web.search.apiKey",
-  );
-  if (topLevel) {
-    return topLevel;
-  }
-  const scoped = isRecord(searchConfig?.["venice-search"])
-    ? (searchConfig["venice-search"] as Record<string, unknown>)
-    : undefined;
-  const scopedKey = readConfiguredSecretString(
-    scoped?.apiKey,
-    "plugins.entries.venice-web-search.config.webSearch.apiKey",
-  );
-  if (scopedKey) {
-    return scopedKey;
-  }
-  return readProviderEnvValue(["VENICE_API_KEY"]);
+  ) ?? readProviderEnvValue(["VENICE_API_KEY"]);
 }
 
 export async function executeVeniceSearch(

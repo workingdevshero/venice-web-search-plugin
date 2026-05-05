@@ -60,13 +60,9 @@ openclaw plugins inspect venice-web-search --runtime --json
 
 ## Configure
 
-Set the API key (any one of these is enough):
+Set the API key:
 
 ```bash
-# Env var
-export VENICE_API_KEY="vn_your_key_here"
-
-# Or via OpenClaw config
 openclaw config set plugins.entries.venice-web-search.config.webSearch.apiKey "vn_your_key_here"
 ```
 

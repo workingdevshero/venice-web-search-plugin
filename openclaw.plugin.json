@@ -1,5 +1,7 @@
 {
   "id": "venice-web-search",
+  "name": "Venice AI Web Search",
+  "description": "Venice AI web search provider — Brave Search (Zero Data Retention) and Google Search via Venice's privacy-preserving infrastructure.",
   "activation": {
     "onStartup": false
   },
